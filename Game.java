@@ -1,8 +1,9 @@
 public class Game {
-    private String gameName;
-    private String endGamePoint ;
+    private final String endGamePoint ;
     private int point ;
 
+public void CalculatePoint(){
 
+}
 
 }

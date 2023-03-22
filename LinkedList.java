@@ -4,4 +4,14 @@ public class LinkedList {
     private Node tail;
 
 
+
+
+    public void add(){
+    }
+
+    public void delete(){
+    }
+
+    public String toString(){
+    }
 }
