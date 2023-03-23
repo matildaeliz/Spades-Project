@@ -6,4 +6,8 @@ public void CalculatePoint(){
 
 }
 
+public void play(){
+    
+}
+
 }
