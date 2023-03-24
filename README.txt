@@ -1,0 +1,1 @@
+This repository is made by Arda Onur for first CS201(Data Structures and Algorithms) Linkedlist Project which is about Spades Game
