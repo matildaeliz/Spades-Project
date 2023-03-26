@@ -35,7 +35,7 @@ public class LinkedList {
      */
     public String toString(){
     }
-}
+
 
     /**
      *
@@ -48,6 +48,7 @@ public Node getHead(){
      *
      *Method for getting tail;
      */
-public getTail(){
+public Node getTail(){
 
+}
 }
