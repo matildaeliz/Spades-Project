@@ -21,11 +21,16 @@ public class Card {
   private String number;
 
     /**
-     * Method construct a card with suit and number
+     * Attribute indicates the value of card
      *
      */
 
     private int valueofcard;
+    /**
+     * Method construct a card with suit and number
+     *
+     */
+
     public Card(String suit,String number){
 
     }
