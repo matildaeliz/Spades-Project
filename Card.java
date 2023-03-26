@@ -19,6 +19,11 @@ public class Card {
      *
      */
   private String number;
+    /**
+     * The attribute contains card value;
+     *
+     */
+  private int value;
 
     /**
      * Method construct a card with suit and number
@@ -35,7 +40,7 @@ public class Card {
 
     }
     /**
-     * Method share equallt shuffled cards
+     * Method shares  cards shuffled  equally to players
      *
      */
     public void shareTheCards(){
