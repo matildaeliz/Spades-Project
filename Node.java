@@ -4,7 +4,7 @@ public class Node {
      *Atrribute for taking data
      */
 
-    private int data;
+    private Card data;
     /**
      *
      *Method for taking next adress
