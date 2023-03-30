@@ -1,21 +1,21 @@
-public class Node {
+public class CardNode {
 
 
     private Card card;
 
-    private Node next;
+    private CardNode next;
 
-    public Node(Card card){
+    public CardNode(Card card){
         this.card = card;
         this.next = null;
     }
 
 
-    public Node getNext() {
+    public CardNode getNext() {
         return next;
     }
 
-    public void setNext(Node next){
+    public void setNext(CardNode next){
         this.next = next;
     }
 

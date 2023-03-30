@@ -1,18 +1,18 @@
 import java.util.Random;
 
-public class LinkedList {
+public class CardLinkedList {
 
 
-    private Node head;
-    private Node tail;
+    private CardNode head;
+    private CardNode tail;
 
 
-    public LinkedList() {
+    public CardLinkedList() {
         this.head = null;
         this.tail = tail;
     }
 
-    public void insertLast(Node newNode) {
+    public void insertLast(CardNode newNode) {
         if (head == null) {
             head = newNode;
         } else {
@@ -23,7 +23,7 @@ public class LinkedList {
 
     public void printList() {
 
-        Node tmp = head;
+        CardNode tmp = head;
 
         while (tmp != null) {
             System.out.print(tmp.getCard().getECard()+ " ");
@@ -33,9 +33,9 @@ public class LinkedList {
     }
 
 
-    public Node getPrevious(Node node) {
-        Node tmp = head;
-        Node previous = null;
+    public CardNode getPrevious(CardNode node) {
+        CardNode tmp = head;
+        CardNode previous = null;
         while (tmp != node) {
             previous = tmp;
             tmp = tmp.getNext();
@@ -52,8 +52,8 @@ public class LinkedList {
         }
     }
 
-    public Node getNode(int i) {
-        Node tmp = head;
+    public CardNode getNode(int i) {
+        CardNode tmp = head;
         int index = 1;
         while (tmp != null) {
             if (index == i){
@@ -66,15 +66,20 @@ public class LinkedList {
     }
 
 
-    public Node getFirst(){
-       Node tmp =head;
+    public CardNode getFirst(){
+       CardNode tmp =head;
 
        head = head.getNext();
 
         return tmp;
     }
 
-    public void newLinkedListinsert(Node newNode){
+
+    /**
+     * Method takes nodes from the existed cardlinkedlist and puts in the new linkedlist but If the node has adrress, the adress changes.
+     * @param newNode
+     */
+    public void newLinkedListinsert(CardNode newNode){
         if(tail !=null){
             newNode.setNext(null);
             tail.setNext(newNode);
@@ -92,13 +97,18 @@ public class LinkedList {
 
     }
 
+    /**
+     * Method takaes the current node with mathRandom method and puts in the head of the cardlinkedlist
+     *
+     * @param deck
+     */
 
-    public void shuffle(LinkedList deck){
+    public void shuffle(CardLinkedList deck){
         Random rand = new Random();
-        Node current;
-        Node previusofcurrent;
-        Node nextofcurrent;
-        Node headnext;
+        CardNode current;
+        CardNode previusofcurrent;
+        CardNode nextofcurrent;
+        CardNode headnext;
         int i=0;
 while (i<143) {
     int randomNum = rand.nextInt(50) + 2;
