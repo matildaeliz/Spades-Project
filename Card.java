@@ -34,10 +34,7 @@ public class Card {
     }
 
 
-    /**
-     * Method creates the all 53 cards with loop
-     * @param list
-     */
+
     public void createCards(CardLinkedList list){
         for(int suit = 1; suit < 5; suit++) {
             for(int number = 2; number<11; number++){
