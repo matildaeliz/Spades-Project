@@ -1,20 +1,18 @@
-import org.w3c.dom.Node;
-
 import java.util.Random;
 
-public class CardLinkedList {
+public class LinkedList {
 
 
-    private CardNode head;
-    private CardNode tail;
+    private Node head;
+    private Node tail;
 
 
-    public CardLinkedList() {
+    public LinkedList() {
         this.head = null;
-        this.tail = tail;
+        this.tail = null;
     }
 
-    public void insertLast(CardNode newNode) {
+    public void insertLast(Node newNode) {
         if (head == null) {
             head = newNode;
         } else {
@@ -25,25 +23,25 @@ public class CardLinkedList {
 
     public void printList() {
 
-        CardNode tmp = head;
+        Node tmp = head;
 
         while (tmp != null) {
-            System.out.print(tmp.getCard().getECard()+ " ");
+            System.out.print(tmp.getCard().getECard()+ ", ");
             tmp = tmp.getNext();
         }
 
     }
-public CardNode getHead(){
+public Node getHead(){
         return head;
 }
 
-public void setHead(CardNode node){
+public void setHead(Node node){
         this.head = node;
 }
 
-    public CardNode getPrevious(CardNode node) {
-        CardNode tmp = head;
-        CardNode previous = null;
+    public Node getPrevious(Node node) {
+        Node tmp = head;
+        Node previous = null;
         while (tmp != node) {
             previous = tmp;
             tmp = tmp.getNext();
@@ -60,8 +58,8 @@ public void setHead(CardNode node){
         }
     }
 
-    public CardNode getNode(int i) {
-        CardNode tmp = head;
+    public Node getNode(int i) {
+        Node tmp = head;
         int index = 1;
         while (tmp != null) {
             if (index == i){
@@ -74,7 +72,7 @@ public void setHead(CardNode node){
     }
   public int getSizeofHand(){
         int i = 0;
-        CardNode tmp = head;
+        Node tmp = head;
         while (tmp != null){
             i++;
             tmp = tmp.getNext();
@@ -82,8 +80,8 @@ public void setHead(CardNode node){
         return i;
   }
 
-    public CardNode getFirst(){
-       CardNode tmp =head;
+    public Node getFirst(){
+       Node tmp =head;
 
        head = head.getNext();
 
@@ -95,7 +93,7 @@ public void setHead(CardNode node){
      * Method takes nodes from the existed cardlinkedlist and puts in the new linkedlist but If the node has adrress, the adress changes.
      * @param newNode
      */
-    public void newLinkedListinsert(CardNode newNode){
+    public void newLinkedListinsert(Node newNode){
         if(tail !=null){
             newNode.setNext(null);
             tail.setNext(newNode);
@@ -119,12 +117,12 @@ public void setHead(CardNode node){
      * @param deck
      */
 
-    public void shuffle(CardLinkedList deck){
+    public void shuffle(LinkedList deck){
         Random rand = new Random();
-        CardNode current;
-        CardNode previusofcurrent;
-        CardNode nextofcurrent;
-        CardNode headnext;
+        Node current;
+        Node previusofcurrent;
+        Node nextofcurrent;
+        Node headnext;
         int i=0;
 while (i<143) {
     int randomNum = rand.nextInt(50) + 2;
