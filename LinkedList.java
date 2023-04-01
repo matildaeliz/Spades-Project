@@ -1,3 +1,5 @@
+import org.w3c.dom.Node;
+
 import java.util.Random;
 
 public class CardLinkedList {
@@ -31,7 +33,13 @@ public class CardLinkedList {
         }
 
     }
+public CardNode getHead(){
+        return head;
+}
 
+public void setHead(CardNode node){
+        this.head = node;
+}
 
     public CardNode getPrevious(CardNode node) {
         CardNode tmp = head;
@@ -64,7 +72,15 @@ public class CardLinkedList {
         }
         return null;
     }
-
+  public int getSizeofHand(){
+        int i = 0;
+        CardNode tmp = head;
+        while (tmp != null){
+            i++;
+            tmp = tmp.getNext();
+        }
+        return i;
+  }
 
     public CardNode getFirst(){
        CardNode tmp =head;
