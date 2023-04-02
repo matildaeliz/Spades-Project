@@ -4,7 +4,9 @@ public class Player {
 
     LinkedList hand;
 
-    protected int bid;
+    protected int forcestedbid;
+
+    protected int actualbid;
 
     protected int totalpoint;
 
@@ -23,14 +25,22 @@ public class Player {
         System.out.println();
         System.out.println("Please enter your bid: ");
         int value = sc.nextInt();
-        bid = value;
+        forcestedbid = value;
 
 
     }
 
-public int getBid(){
-        return bid;
+public int getForcestedBid(){
+        return forcestedbid;
 }
+
+    public int getActualbid() {
+        return actualbid;
+    }
+
+    public void increaseActualbid(){
+        actualbid++;
+    }
 
     public int getTotalpoint() {
         return totalpoint;
@@ -41,39 +51,60 @@ public int getBid(){
             for (int j = 1; j <= 13; j++) {
                 if (i == 1) {
                     player.hand.newLinkedListinsert(deck.getFirst());
+                     player.hand.getNode(j).getCard().setOwner("Player");
                 }
                 if (i == 2) {
                     botPlayer1.hand.newLinkedListinsert(deck.getFirst());
+                    botPlayer1.hand.getNode(j).getCard().setOwner("BotPlayer1");
                 }
                 if (i == 3) {
                     botPlayer2.hand.newLinkedListinsert(deck.getFirst());
+                    botPlayer2.hand.getNode(j).getCard().setOwner("BotPlayer2");
                 }
                 if (i == 4) {
                     botPlayer3.hand.newLinkedListinsert(deck.getFirst());
-
+                    botPlayer3.hand.getNode(j).getCard().setOwner("BotPlayer3");
                 }
             }
         }
     }
 
 
-    public Node play(boolean breaking, int i) {
+    public Node play(boolean breaking) {
         Scanner sc = new Scanner(System.in);
+        System.out.println();
         System.out.println("Warning: You need to write position number of card what you see on your hand ");
         System.out.print("Select Card: ");
+
         int chosencardindex = sc.nextInt();
-        int tur = i;
         int numberofnonspades = calculatingnumberofnonSpades();
         Node playedcard =null;
 
-        if(breaking == false ){
+       if(breaking == true || numberofnonspades == 0){
+            playedcard = hand.getNode(chosencardindex);
+            if(playedcard == hand.getHead() ){
+                hand.setHead(playedcard.getNext());
+                playedcard.setNext(null);
+                return playedcard;
+            }else{
+                Node previous = hand.getPrevious(playedcard);
+                Node currentnext = playedcard.getNext();
+                previous.setNext(currentnext);
+                playedcard.setNext(null);
+
+                return playedcard;
+            }
+
+        }
+        else if(breaking == false ){
 
             while (true){
                 if(hand.getNode(chosencardindex).getCard().getSuit().equals("Spades")){
                     System.out.println("You cannot play Spades until you dont have any card except Spades or open the game with Spades");
                     System.out.print("Select Card: ");
+                    System.out.println(numberofnonspades);
                     chosencardindex = sc.nextInt();
-                }else{
+                } else{
 
                     playedcard = hand.getNode(chosencardindex);
                     if(playedcard == hand.getHead() ){
@@ -90,21 +121,6 @@ public int getBid(){
                     }
 
                 }
-            }
-
-        } else if(breaking == true || numberofnonspades == 0){
-            playedcard = hand.getNode(chosencardindex);
-            if(playedcard == hand.getHead() ){
-                hand.setHead(playedcard.getNext());
-                playedcard.setNext(null);
-                return playedcard;
-            }else{
-                Node previous = hand.getPrevious(playedcard);
-                Node currentnext = playedcard.getNext();
-                previous.setNext(currentnext);
-                playedcard.setNext(null);
-
-                return playedcard;
             }
 
         }
