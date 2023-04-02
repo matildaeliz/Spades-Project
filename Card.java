@@ -6,6 +6,8 @@ public class Card {
     private String Ecard;
     private int value;
 
+    String owner;
+
 
     public Card(String suit, String number, int value){
         this.suit = suit;
@@ -17,9 +19,13 @@ public class Card {
     }
 
 
+    public String getOwner() {
+        return owner;
+    }
 
-
-
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
     public int getValue() {
         return value;
