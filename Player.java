@@ -12,13 +12,7 @@ public class Player {
 
     public Player() {
         hand = new LinkedList();
-
-
 }
-
-
-
-
 
     public void bidsForEnter(){
         Scanner sc = new Scanner(System.in);
@@ -70,7 +64,7 @@ public int getForcestedBid(){
     }
 
 
-    public Node play(boolean breaking) {
+    public Node play(boolean breaking,Node initialcard) {
         Scanner sc = new Scanner(System.in);
         System.out.println();
         System.out.println("Warning: You need to write position number of card what you see on your hand ");
@@ -78,11 +72,36 @@ public int getForcestedBid(){
 
         int chosencardindex = sc.nextInt();
         int numberofnonspades = calculatingnumberofnonSpades();
-        Node playedcard =null;
+        Node playedcard = null;
 
        if(breaking == true || numberofnonspades == 0){
             playedcard = hand.getNode(chosencardindex);
-            if(playedcard == hand.getHead() ){
+           if (calculateInitialcard(initialcard)>0) {
+               if(hand.getNode(chosencardindex).getCard().getSuit().equals(initialcard.getCard().getSuit())){
+                   playedcard = hand.getNode(chosencardindex);
+                   if(playedcard == hand.getHead() ){
+                       hand.setHead(playedcard.getNext());
+                       playedcard.setNext(null);
+                       return playedcard;
+                   }else{
+                       Node previous = hand.getPrevious(playedcard);
+                       Node currentnext = playedcard.getNext();
+                       previous.setNext(currentnext);
+                       playedcard.setNext(null);
+
+                       return playedcard;
+                   }
+
+               } else {
+                   System.out.println("You need to choose correct suit");
+                   System.out.print("Select Card: ");
+
+                   chosencardindex = sc.nextInt();
+               }
+
+
+           }
+            else if(playedcard == hand.getHead() ){
                 hand.setHead(playedcard.getNext());
                 playedcard.setNext(null);
                 return playedcard;
@@ -102,8 +121,31 @@ public int getForcestedBid(){
                 if(hand.getNode(chosencardindex).getCard().getSuit().equals("Spades")){
                     System.out.println("You cannot play Spades until you dont have any card except Spades or open the game with Spades");
                     System.out.print("Select Card: ");
-                    System.out.println(numberofnonspades);
                     chosencardindex = sc.nextInt();
+                } else if (calculateInitialcard(initialcard)>0) {
+                    if(hand.getNode(chosencardindex).getCard().getSuit().equals(initialcard.getCard().getSuit())){
+                        playedcard = hand.getNode(chosencardindex);
+                        if(playedcard == hand.getHead() ){
+                            hand.setHead(playedcard.getNext());
+                            playedcard.setNext(null);
+                            return playedcard;
+                        }else{
+                            Node previous = hand.getPrevious(playedcard);
+                            Node currentnext = playedcard.getNext();
+                            previous.setNext(currentnext);
+                            playedcard.setNext(null);
+
+                            return playedcard;
+                        }
+
+                    } else {
+                        System.out.println("You need to choose correct suit");
+                        System.out.print("Select Card: ");
+
+                        chosencardindex = sc.nextInt();
+                    }
+
+
                 } else{
 
                     playedcard = hand.getNode(chosencardindex);
@@ -140,6 +182,21 @@ public int getForcestedBid(){
         }
         return number;
     }
+
+ public int calculateInitialcard(Node initialcard){
+       int number = 0;
+       for(int i = 1 ; i<=this.hand.getSizeofHand();i++){
+            String card = this.hand.getNode(i).getCard().getSuit();
+
+            if(initialcard == null){
+
+            }
+           else if (card.equals(initialcard.getCard().getSuit())){
+                number++;
+            }
+       }
+       return number;
+ }
 
 
 
