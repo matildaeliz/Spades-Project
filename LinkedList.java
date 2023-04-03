@@ -98,10 +98,10 @@ public void setHead(Node node){
             newNode.setNext(null);
             tail.setNext(newNode);
             tail = newNode;
-        } else if (head == null) {
+        } if (head == null) {
             head=newNode;
             head.setNext(null);
-        } else if (head != null && tail == null) {
+        }  if (head != null && tail == null) {
             newNode.setNext(null);
             head.setNext(newNode);
             tail= newNode;

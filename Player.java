@@ -47,15 +47,15 @@ public int getForcestedBid(){
                     player.hand.newLinkedListinsert(deck.getFirst());
                      player.hand.getNode(j).getCard().setOwner("Player");
                 }
-                if (i == 2) {
+                else if (i == 2) {
                     botPlayer1.hand.newLinkedListinsert(deck.getFirst());
                     botPlayer1.hand.getNode(j).getCard().setOwner("BotPlayer1");
                 }
-                if (i == 3) {
+               else  if (i == 3) {
                     botPlayer2.hand.newLinkedListinsert(deck.getFirst());
                     botPlayer2.hand.getNode(j).getCard().setOwner("BotPlayer2");
                 }
-                if (i == 4) {
+               else  if (i == 4) {
                     botPlayer3.hand.newLinkedListinsert(deck.getFirst());
                     botPlayer3.hand.getNode(j).getCard().setOwner("BotPlayer3");
                 }
@@ -77,7 +77,7 @@ public int getForcestedBid(){
        if(breaking == true || numberofnonspades == 0){
             playedcard = hand.getNode(chosencardindex);
            if (calculateInitialcard(initialcard)>0) {
-               if(hand.getNode(chosencardindex).getCard().getSuit().equals(initialcard.getCard().getSuit())){
+               if(hand.getNode(chosencardindex).getCard().getSuit().equals(initialcard.getCard().getSuit()) || hand.getNode(chosencardindex).getCard().getSuit().equals("Spades")){
                    playedcard = hand.getNode(chosencardindex);
                    if(playedcard == hand.getHead() ){
                        hand.setHead(playedcard.getNext());

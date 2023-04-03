@@ -25,9 +25,83 @@ public class BotPlayer extends Player {
             int calculatininitialcards = calculateInitialcard(initialcard);
             Node playedcard ;
             boolean flag =false;
+             if(breaking == true) {
+                  if (calculateInitialcard(initialcard)>0){
+                      for(int i =1; i<=this.hand.getSizeofHand(); i++){
+                          if((hand.getNode(i).getCard().getValue()> valuablecard.getCard().getValue() && hand.getNode(i).getCard().getSuit().equals(initialcard.getCard().getSuit())) || hand.getNode(i).getCard().getSuit().equals("Spades")){
+                              flag =true;
+                          }
+                      }if(flag == true){
+                          for(int i =1; i<=this.hand.getSizeofHand(); i++){
+                              if((hand.getNode(i).getCard().getValue()> valuablecard.getCard().getValue() && hand.getNode(i).getCard().getSuit().equals(initialcard.getCard().getSuit())) || hand.getNode(i).getCard().getSuit().equals("Spades")){
+                                  playedcard =hand.getNode(i);
+                                  if(playedcard == hand.getHead() ){
+                                      hand.setHead(playedcard.getNext());
+                                      playedcard.setNext(null);
+                                      return playedcard;
+                                  }else{
+                                      Node previous = hand.getPrevious(playedcard);
+                                      Node currentnext = playedcard.getNext();
+                                      previous.setNext(currentnext);
+                                      playedcard.setNext(null);
+
+                                      return playedcard;
+                                  }
+                              }
+                          }
+                      }else {
+                          for(int i =1; i<=this.hand.getSizeofHand(); i++){
+                              if (hand.getNode(i).getCard().getSuit().equals(initialcard.getCard().getSuit()) || hand.getNode(i).getCard().getSuit().equals("Spades")){
+                                  playedcard =hand.getNode(i);
+                                  if(playedcard == hand.getHead() ){
+                                      hand.setHead(playedcard.getNext());
+                                      playedcard.setNext(null);
+                                      return playedcard;
+                                  }else{
+                                      Node previous = hand.getPrevious(playedcard);
+                                      Node currentnext = playedcard.getNext();
+                                      previous.setNext(currentnext);
+                                      playedcard.setNext(null);
+
+                                      return playedcard;
+                                  }
+                              }
+                          }
+                      }
 
 
-           if(!breaking){
+
+
+
+
+                  }
+                  else if (calculateInitialcard(initialcard)==0) {
+                      Random rnd = new Random();
+                      int  random = rnd.nextInt(hand.getSizeofHand())+1;
+
+
+                      playedcard = hand.getNode(random);
+                      if(playedcard == hand.getHead() ){
+                          hand.setHead(playedcard.getNext());
+                          playedcard.setNext(null);
+                          return playedcard;
+                      }else{
+                          Node previous = hand.getPrevious(playedcard);
+                          Node currentnext = playedcard.getNext();
+                          previous.setNext(currentnext);
+                          playedcard.setNext(null);
+
+                          return playedcard;
+                      }
+
+
+
+
+                  }
+
+
+             }
+          else if(!breaking){
 
                if(calculatininitialcards>0){
                    //checks if there are any initialbid and highervalue
