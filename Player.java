@@ -141,7 +141,6 @@ public int getForcestedBid(){
                     } else {
                         System.out.println("You need to choose correct suit");
                         System.out.print("Select Card: ");
-
                         chosencardindex = sc.nextInt();
                     }
 
@@ -228,14 +227,15 @@ public int getForcestedBid(){
  public int calculateInitialcard(Node initialcard){
        int number = 0;
        for(int i = 1 ; i<=this.hand.getSizeofHand();i++){
-            String card = this.hand.getNode(i).getCard().getSuit();
 
-            if(initialcard == null){
-
+            if (initialcard == null){
+                break;
             }
-           else if (card.equals(initialcard.getCard().getSuit())){
+
+            else if (hand.getNode(i).getCard().getSuit().equals(initialcard.getCard().getSuit())){
                 number++;
             }
+
        }
        return number;
  }
