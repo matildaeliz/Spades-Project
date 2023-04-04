@@ -141,31 +141,6 @@ public class Game {
     }
 
 
-public void calculatepoint(Player player, BotPlayer botPlayer1,BotPlayer botPlayer2,BotPlayer botPlayer3){
-         for (int i =1; i<=4; i++){
-
-             if(i == 1){
-                 if(player.forcestedbid == 0 && player.actualbid>=1){
-                     player.totalpoint += -100;
-                 }
-                  if(player.forcestedbid == 0 && player.actualbid ==0){
-                      player.totalpoint += 100;
-                  }
-
-
-
-
-
-             }
-
-
-
-         }
-
-
-
-
-}
 
 
 

@@ -169,6 +169,48 @@ public int getForcestedBid(){
         return null;
     }
 
+    public void calculatepoint(){
+             if(forcestedbid == 0 && actualbid>=1){
+                    totalpoint -= 100;
+                }
+                else if(forcestedbid == 0 && actualbid ==0){
+                    totalpoint += 100;
+                }
+
+
+                if(forcestedbid == actualbid){
+                    totalpoint += actualbid*10;
+
+                }
+
+                if(actualbid > forcestedbid){
+                    int remains = actualbid-forcestedbid;
+                    int  point = (actualbid-remains)*10;
+                    totalpoint += point;
+
+                    if(remains > 0){
+                        totalpoint+=remains;
+                    }
+
+
+                }
+
+
+                if(forcestedbid > actualbid){
+                    totalpoint -= actualbid*10;
+                }
+
+
+
+
+
+
+
+
+
+
+
+    }
 
     public int  calculatingnumberofnonSpades(){
         int number = 0;
