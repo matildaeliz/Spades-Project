@@ -118,70 +118,70 @@ public class Player {
 
         int numberofnonspades = calculatingnumberofnonSpades();
         Node playedcard = null;
+
        if(breaking == true){
+while(true) {
+    if (calculateInitialcard(initialcard) > 0) {
 
-           if (calculateInitialcard(initialcard)>0) {
+        if (initialcard.getCard().getSuit().equals("Spades")) {
 
-               if(initialcard.getCard().getSuit().equals("Spades")){
+            playedcard = hand.getNode(chosencardindex);
+            if (playedcard == hand.getHead()) {
+                hand.setHead(playedcard.getNext());
+                playedcard.setNext(null);
+                return playedcard;
+            } else {
+                Node previous = hand.getPrevious(playedcard);
+                Node currentnext = playedcard.getNext();
+                previous.setNext(currentnext);
+                playedcard.setNext(null);
 
-                   playedcard = hand.getNode(chosencardindex);
-                   if(playedcard == hand.getHead() ){
-                       hand.setHead(playedcard.getNext());
-                       playedcard.setNext(null);
-                       return playedcard;
-                   }else{
-                       Node previous = hand.getPrevious(playedcard);
-                       Node currentnext = playedcard.getNext();
-                       previous.setNext(currentnext);
-                       playedcard.setNext(null);
+                return playedcard;
+            }
+        }
 
-                       return playedcard;
-                   }
-               }
-
-               if((hand.getNode(chosencardindex).getCard().getSuit().equals(initialcard.getCard().getSuit())) || hand.getNode(chosencardindex).getCard().getSuit().equals("Spades")){
-
-
-                   playedcard = hand.getNode(chosencardindex);
-                   if(playedcard == hand.getHead() ){
-                       hand.setHead(playedcard.getNext());
-                       playedcard.setNext(null);
-                       return playedcard;
-                   }else{
-                       Node previous = hand.getPrevious(playedcard);
-                       Node currentnext = playedcard.getNext();
-                       previous.setNext(currentnext);
-                       playedcard.setNext(null);
-
-                       return playedcard;
-                   }
-
-               } else {
-                   System.out.println("You need to choose correct suit");
-                   System.out.print("Select Card: ");
-
-                   chosencardindex = sc.nextInt();
-               }
+        if ((hand.getNode(chosencardindex).getCard().getSuit().equals(initialcard.getCard().getSuit())) || hand.getNode(chosencardindex).getCard().getSuit().equals("Spades")) {
 
 
-           } else {
+            playedcard = hand.getNode(chosencardindex);
+            if (playedcard == hand.getHead()) {
+                hand.setHead(playedcard.getNext());
+                playedcard.setNext(null);
+                return playedcard;
+            } else {
+                Node previous = hand.getPrevious(playedcard);
+                Node currentnext = playedcard.getNext();
+                previous.setNext(currentnext);
+                playedcard.setNext(null);
 
-               playedcard = hand.getNode(chosencardindex);
-               if(playedcard == hand.getHead() ){
-                   hand.setHead(playedcard.getNext());
-                   playedcard.setNext(null);
-                   return playedcard;
-               }else{
-                   Node previous = hand.getPrevious(playedcard);
-                   Node currentnext = playedcard.getNext();
-                   previous.setNext(currentnext);
-                   playedcard.setNext(null);
+                return playedcard;
+            }
 
-                   return playedcard;
-               }
+        } else {
+            System.out.println("You need to choose correct suit");
+            System.out.print("Select Card: ");
+            chosencardindex = sc.nextInt();
+        }
 
-           }
 
+    } else {
+
+        playedcard = hand.getNode(chosencardindex);
+        if (playedcard == hand.getHead()) {
+            hand.setHead(playedcard.getNext());
+            playedcard.setNext(null);
+            return playedcard;
+        } else {
+            Node previous = hand.getPrevious(playedcard);
+            Node currentnext = playedcard.getNext();
+            previous.setNext(currentnext);
+            playedcard.setNext(null);
+
+            return playedcard;
+        }
+
+    }
+}
         }
         else if(breaking == false ){
 
