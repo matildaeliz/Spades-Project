@@ -33,9 +33,14 @@ public class Player {
         System.out.println();
         System.out.println("Please enter your bid: ");
         int value = sc.nextInt();
+
+
+
         while(true){
-            System.out.println("Your bid cannot be higher than 13");
-            value = sc.nextInt();
+            if(value > 13){
+                System.out.println("Your bid cannot be higher than 13");
+                value = sc.nextInt();
+            }
             if(value<13){
                 break;
             }
@@ -123,6 +128,14 @@ public class Player {
         System.out.print("Select Card: ");
 
         int chosencardindex = sc.nextInt();
+        while (true){
+            if(chosencardindex > hand.getSizeofHand()){
+                System.out.println("You cannot select the higher number than your hand");
+               chosencardindex = sc.nextInt();
+            }else {
+                break;
+            }
+        }
 
         int numberofnonspades = calculatingnumberofnonSpades();
         Node playedcard = null;

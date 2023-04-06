@@ -405,7 +405,7 @@ public void humanstarts(Player player, BotPlayer botPlayer1,BotPlayer botPlayer2
                     System.out.println("Your turn");
                     System.out.println("");
                     player.hand.printList();
-                    System.out.println(player.calculateInitialcard(initialcard));
+
                     throwedCard = player.play(flag,initialcard);
 
                     cardInTable = throwedCard.getCard().getECard();
@@ -511,7 +511,7 @@ public void humanstarts(Player player, BotPlayer botPlayer1,BotPlayer botPlayer2
                     System.out.println("Your turn");
                     System.out.println("");
                     player.hand.printList();
-                    player.calculateInitialcard(initialcard);
+
                     throwedCard = player.play(flag,initialcard);
 
                     cardInTable = throwedCard.getCard().getECard();

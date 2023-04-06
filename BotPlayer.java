@@ -21,7 +21,7 @@ public class BotPlayer extends Player {
 
 
 /**
- * the methods check the initial card first if it exits and value of card higher than throwedcared return that card and the methods checks if there is broken game or not
+ * the methods check the initial card first if it exits and value of card higher than throwedcared returns that card and the methods checks if there is broken game or not
  */
         public Node play(boolean breaking,Node initialcard, Node valuablecard) {
 
