@@ -10,7 +10,9 @@ public class BotPlayer extends Player {
     }
 
 
-
+    /**
+     * gets a bits from botplayer
+     */
         public void bidsForEnter () {
             Random rand = new Random();
 
@@ -18,7 +20,9 @@ public class BotPlayer extends Player {
         }
 
 
-
+/**
+ * the methods check the initial card first if it exits and value of card higher than throwedcared return that card and the methods checks if there is broken game or not
+ */
         public Node play(boolean breaking,Node initialcard, Node valuablecard) {
 
 
@@ -224,9 +228,11 @@ return  null;
         }
 
 
-
-
-
+    /**
+     * checks if there are any valube card on the hand
+     * @param valuablecard
+     * @return
+     */
 
 public boolean existValuebleCard(Node valuablecard){
         boolean flag = false;

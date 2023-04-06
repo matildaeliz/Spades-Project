@@ -1,11 +1,27 @@
 public class Card {
-
+    /**
+     * card suit
+     */
     private String suit;
+
+    /**
+     * card number
+     */
     private String number;
 
-    private String Ecard;
-    private int value;
+    /**
+     * full of card
+     */
 
+    private String Ecard;
+
+    /**
+     * value of the card
+     */
+    private int value;
+    /**
+     * owner of the card
+     */
     String owner;
 
 
@@ -18,29 +34,53 @@ public class Card {
     public Card() {
     }
 
-
+    /**
+     * gets owner
+     * @return
+     */
     public String getOwner() {
         return owner;
     }
+
+    /**
+     * sets the owner
+     * @param owner
+     */
 
     public void setOwner(String owner) {
         this.owner = owner;
     }
 
+    /**
+     * gets the value of card
+     * @return
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     * gets the suit of card
+     * @return
+     */
     public String getSuit() {
         return suit;
     }
+
+    /**
+     * gets total of card
+     * @return
+     */
 
     public String getECard() {
         return Ecard;
     }
 
 
-
+    /**
+     * this method creates all 52 cards
+     * @param list
+     */
     public void createCards(LinkedList list){
         for(int suit = 1; suit < 5; suit++) {
             for(int number = 2; number<11; number++){

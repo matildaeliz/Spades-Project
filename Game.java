@@ -1,13 +1,18 @@
 import java.util.Random;
 
 public class Game {
+
+    /**
+     * initial point to end the game
+     */
     private final int endgamepoint = 500;
 
 
 
 
     /**
-     * Method starts the game
+     * Method starts the game gets players instance and creates a deck and shuffle it. After that players share with their bits. and the game starts
+     * Every 13 tour, the dealers changes and If 4 cards throwed the dealer starts first always.
      */
     public void play() {
 
@@ -22,6 +27,7 @@ public class Game {
             Random rn = new Random();
 
            int play=  rn.nextInt(3)+1;
+
             LinkedList deck = new LinkedList();
             Card card = new Card();
 
@@ -99,6 +105,16 @@ public class Game {
 
 
     }
+
+    /**
+     * Human variant for game which is started by Human player
+     * when a card throwed the play method runs and throws a card on table
+     * @param player
+     * @param botPlayer1
+     * @param botPlayer2
+     * @param botPlayer3
+     * @param flag
+     */
 
 public void humanstarts(Player player, BotPlayer botPlayer1,BotPlayer botPlayer2,BotPlayer botPlayer3,boolean flag){
 
@@ -200,6 +216,15 @@ public void humanstarts(Player player, BotPlayer botPlayer1,BotPlayer botPlayer2
     }
 }
 
+    /**
+     * BOT 1 variant for game which is started by BOT1 player
+     * when a card throwed the play method runs and throws a card on table
+     * @param player
+     * @param botPlayer1
+     * @param botPlayer2
+     * @param botPlayer3
+     * @param flag
+     */
 
     public void bot1starts(Player player, BotPlayer botPlayer1,BotPlayer botPlayer2,BotPlayer botPlayer3,boolean flag){
 
@@ -303,6 +328,17 @@ public void humanstarts(Player player, BotPlayer botPlayer1,BotPlayer botPlayer2
 
         }
     }
+
+    /**
+     * BOT2 variant for game which is started by BOT2 player,
+     * when a card throwed the play method runs and throws a card on table
+     * @param player
+     * @param botPlayer1
+     * @param botPlayer2
+     * @param botPlayer3
+     * @param flag
+     */
+
     public void bot2starts(Player player, BotPlayer botPlayer1,BotPlayer botPlayer2,BotPlayer botPlayer3,boolean flag){
 
         for(int el = 1 ; el <=13; el++){
@@ -397,6 +433,14 @@ public void humanstarts(Player player, BotPlayer botPlayer1,BotPlayer botPlayer2
 
         }
     }
+    /**
+     * BOT3 variant for game which is started by BOT3 player, when a card throwed the play method runs and throws a card on table
+     * @param player
+     * @param botPlayer1
+     * @param botPlayer2
+     * @param botPlayer3
+     * @param flag
+     */
 
     public void bot3starts(Player player, BotPlayer botPlayer1,BotPlayer botPlayer2,BotPlayer botPlayer3,boolean flag){
 

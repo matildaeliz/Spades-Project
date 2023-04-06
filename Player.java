@@ -1,12 +1,23 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Player {
-
+    /**
+     * hand of player
+     */
     LinkedList hand;
-
+    /**
+     * forcestedbid for player
+     */
     protected int forcestedbid;
-
+    /**
+     * actualbid for player
+     */
     protected int actualbid;
+
+    /**
+     * total point for playet
+     */
 
     protected int totalpoint;
 
@@ -14,6 +25,9 @@ public class Player {
         hand = new LinkedList();
 }
 
+    /**
+     * player enter the bids;
+     */
     public void bidsForEnter(){
         Scanner sc = new Scanner(System.in);
         System.out.println();
@@ -24,21 +38,45 @@ public class Player {
 
     }
 
-public int getForcestedBid(){
+    /**
+     * gets the forcestedbid
+     * @return
+     */
+    public int getForcestedBid(){
         return forcestedbid;
 }
 
+    /**
+     * gets the actual bid;
+     * @return
+     */
     public int getActualbid() {
         return actualbid;
     }
 
+    /**
+     * every win the tour, increasr the bid 1;
+     */
     public void increaseActualbid(){
         actualbid++;
     }
 
+    /**
+     * get total point,
+     * @return
+     */
     public int getTotalpoint() {
         return totalpoint;
     }
+
+    /**
+     *  Player shares the card from the deck linkedlist and shares eqully 13 card
+     * @param deck
+     * @param botPlayer1
+     * @param botPlayer2
+     * @param botPlayer3
+     * @param player
+     */
 
     public void sharetheCards(LinkedList deck, BotPlayer botPlayer1, BotPlayer botPlayer2, BotPlayer botPlayer3, Player player) {
         for (int i = 1; i < 5; i++) {
@@ -63,7 +101,13 @@ public int getForcestedBid(){
         }
     }
 
-
+    /**
+     * the method to play for player object. First the cart is wants to select. Then Checks the condition for the game and
+     *  returns or wants a new card number due to the condition of game
+     * @param breaking
+     * @param initialcard
+     * @return
+     */
     public Node play(boolean breaking,Node initialcard) {
         Scanner sc = new Scanner(System.in);
         System.out.println();
@@ -71,13 +115,33 @@ public int getForcestedBid(){
         System.out.print("Select Card: ");
 
         int chosencardindex = sc.nextInt();
+
         int numberofnonspades = calculatingnumberofnonSpades();
         Node playedcard = null;
+       if(breaking == true){
 
-       if(breaking == true || numberofnonspades == 0){
-            playedcard = hand.getNode(chosencardindex);
            if (calculateInitialcard(initialcard)>0) {
-               if(hand.getNode(chosencardindex).getCard().getSuit().equals(initialcard.getCard().getSuit()) || hand.getNode(chosencardindex).getCard().getSuit().equals("Spades")){
+
+               if(initialcard.getCard().getSuit().equals("Spades")){
+
+                   playedcard = hand.getNode(chosencardindex);
+                   if(playedcard == hand.getHead() ){
+                       hand.setHead(playedcard.getNext());
+                       playedcard.setNext(null);
+                       return playedcard;
+                   }else{
+                       Node previous = hand.getPrevious(playedcard);
+                       Node currentnext = playedcard.getNext();
+                       previous.setNext(currentnext);
+                       playedcard.setNext(null);
+
+                       return playedcard;
+                   }
+               }
+
+               if((hand.getNode(chosencardindex).getCard().getSuit().equals(initialcard.getCard().getSuit())) || hand.getNode(chosencardindex).getCard().getSuit().equals("Spades")){
+
+
                    playedcard = hand.getNode(chosencardindex);
                    if(playedcard == hand.getHead() ){
                        hand.setHead(playedcard.getNext());
@@ -100,19 +164,23 @@ public int getForcestedBid(){
                }
 
 
-           }
-            else if(playedcard == hand.getHead() ){
-                hand.setHead(playedcard.getNext());
-                playedcard.setNext(null);
-                return playedcard;
-            }else{
-                Node previous = hand.getPrevious(playedcard);
-                Node currentnext = playedcard.getNext();
-                previous.setNext(currentnext);
-                playedcard.setNext(null);
+           } else {
 
-                return playedcard;
-            }
+               playedcard = hand.getNode(chosencardindex);
+               if(playedcard == hand.getHead() ){
+                   hand.setHead(playedcard.getNext());
+                   playedcard.setNext(null);
+                   return playedcard;
+               }else{
+                   Node previous = hand.getPrevious(playedcard);
+                   Node currentnext = playedcard.getNext();
+                   previous.setNext(currentnext);
+                   playedcard.setNext(null);
+
+                   return playedcard;
+               }
+
+           }
 
         }
         else if(breaking == false ){
@@ -122,7 +190,8 @@ public int getForcestedBid(){
                     System.out.println("You cannot play Spades until you dont have any card except Spades or open the game with Spades");
                     System.out.print("Select Card: ");
                     chosencardindex = sc.nextInt();
-                } else if (calculateInitialcard(initialcard)>0) {
+                }
+                if (calculateInitialcard(initialcard)>0) {
                     if(hand.getNode(chosencardindex).getCard().getSuit().equals(initialcard.getCard().getSuit())){
                         playedcard = hand.getNode(chosencardindex);
                         if(playedcard == hand.getHead() ){
@@ -145,7 +214,7 @@ public int getForcestedBid(){
                     }
 
 
-                } else{
+                } else if(calculateInitialcard(initialcard) == 0){
 
                     playedcard = hand.getNode(chosencardindex);
                     if(playedcard == hand.getHead() ){
@@ -168,6 +237,10 @@ public int getForcestedBid(){
         return null;
     }
 
+
+    /**
+     * this methos calcutes point using forcested bid and actual bid
+     */
     public void calculatepoint(){
              if(forcestedbid == 0 && actualbid>=1){
                     totalpoint -= 100;
@@ -211,6 +284,10 @@ public int getForcestedBid(){
 
     }
 
+    /**
+     * Calculates number of non spades card;
+     * @return
+     */
     public int  calculatingnumberofnonSpades(){
         int number = 0;
         for(int j = 1; j<=hand.getSizeofHand(); j++){
@@ -224,6 +301,11 @@ public int getForcestedBid(){
         return number;
     }
 
+    /**
+     * calculates the initial card due to checking if there are  any inital card
+     * @param initialcard
+     * @return
+     */
  public int calculateInitialcard(Node initialcard){
        int number = 0;
        for(int i = 1 ; i<=this.hand.getSizeofHand();i++){

@@ -1,9 +1,14 @@
 import java.util.Random;
 
 public class LinkedList {
-
-
+    /**
+     * head of linkedlist
+     */
     private Node head;
+
+    /**
+     * tail of linkedlist
+     */
     private Node tail;
 
 
@@ -11,6 +16,11 @@ public class LinkedList {
         this.head = null;
         this.tail = null;
     }
+
+
+    /**
+     * insert the node last
+     */
 
     public void insertLast(Node newNode) {
         if (head == null) {
@@ -21,13 +31,17 @@ public class LinkedList {
         tail = newNode;
     }
 
+    /**
+     * prinst the list
+     */
     public void printList() {
 
         Node tmp = head;
-
+              
         while (tmp != null) {
             System.out.print(tmp.getCard().getECard()+ ", ");
             tmp = tmp.getNext();
+
         }
 
     }
@@ -39,6 +53,11 @@ public void setHead(Node node){
         this.head = node;
 }
 
+    /**
+     * gets previous node
+     * @param node
+     * @return
+     */
     public Node getPrevious(Node node) {
         Node tmp = head;
         Node previous = null;
@@ -49,6 +68,9 @@ public void setHead(Node node){
         return previous;
     }
 
+    /**
+     *delete last node
+     */
     public void deleteLast() {
         tail = getPrevious(tail);
         if (tail != null) {
@@ -58,6 +80,11 @@ public void setHead(Node node){
         }
     }
 
+    /**
+     * gets the i ' th  node
+     * @param i
+     * @return
+     */
     public Node getNode(int i) {
         Node tmp = head;
         int index = 1;
@@ -70,6 +97,11 @@ public void setHead(Node node){
         }
         return null;
     }
+
+    /**
+     * returns size of hand;
+     *
+     */
   public int getSizeofHand(){
         int i = 0;
         Node tmp = head;
@@ -80,6 +112,10 @@ public void setHead(Node node){
         return i;
   }
 
+    /**
+     * gets first node
+     * @return
+     */
     public Node getFirst(){
        Node tmp =head;
 
