@@ -37,8 +37,8 @@ public class Player {
 
 
         while(true){
-            if(value > 13){
-                System.out.println("Your bid cannot be higher than 13");
+            if(value > 13 || value <0){
+                System.out.println("Your bid cannot be higher than 13 or less than 0");
                 value = sc.nextInt();
             }
             if(value<13){
@@ -129,7 +129,7 @@ public class Player {
 
         int chosencardindex = sc.nextInt();
         while (true){
-            if(chosencardindex > hand.getSizeofHand()){
+            if(chosencardindex > hand.getSizeofHand() || chosencardindex <= 0){
                 System.out.println("You cannot select the higher number than your hand");
                chosencardindex = sc.nextInt();
             }else {
